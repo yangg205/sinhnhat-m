@@ -1,4 +1,20 @@
-function createHeart() {
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const audio = document.getElementById('background-music');
+    const playButton = document.getElementById('play-music');
+
+    // Kiểm tra nếu trên di động, yêu cầu người dùng nhấn nút để phát nhạc
+    function isMobileDevice() {
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+
+    if (isMobileDevice()) {
+        playButton.style.display = 'block'; // Hiển thị nút phát nhạc trên di động
+        playButton.addEventListener('click', function() {
+            audio.play();
+            playButton.style.display = 'none'; // Ẩn nút sau khi nhạc được phát
+            function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.onclick = () => makeDisappear(heart);
@@ -39,21 +55,6 @@ function spawnHearts() {
 
 // Bắt đầu tạo trái tim
 spawnHearts();
-
-document.addEventListener("DOMContentLoaded", function() {
-    const audio = document.getElementById('background-music');
-    const playButton = document.getElementById('play-music');
-
-    // Kiểm tra nếu trên di động, yêu cầu người dùng nhấn nút để phát nhạc
-    function isMobileDevice() {
-        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    }
-
-    if (isMobileDevice()) {
-        playButton.style.display = 'block'; // Hiển thị nút phát nhạc trên di động
-        playButton.addEventListener('click', function() {
-            audio.play();
-            playButton.style.display = 'none'; // Ẩn nút sau khi nhạc được phát
         });
     } else {
         audio.autoplay = true; // Tự động phát nhạc trên máy tính
